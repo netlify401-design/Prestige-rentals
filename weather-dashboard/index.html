@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern Weather Dashboard - Real-time weather data and forecasts">
+    <meta name="theme-color" content="#4a90e2">
+    <title>Weather Dashboard | Real-time Weather Forecast</title>
+    
+    <!-- Weather Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/weather-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/weather-icons-wind.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">
+                    <i class="wi wi-day-sunny"></i> Weather Dashboard
+                </h1>
+            </div>
+            
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search city..."
+                        autocomplete="off"
+                    >
+                    <button class="search-btn" id="searchBtn" aria-label="Search">
+                        <i class="wi wi-search"></i>
+                    </button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+            
+            <!-- Favorites Section -->
+            <div class="favorites-section">
+                <h3 class="section-title">
+                    <i class="wi wi-star"></i> Favorites
+                </h3>
+                <div class="favorites-list" id="favoritesList">
+                    <p class="no-favorites">No favorites yet. Add one!</p>
+                </div>
+            </div>
+            
+            <!-- Recently Viewed -->
+            <div class="recent-section">
+                <h3 class="section-title">
+                    <i class="wi wi-history"></i> Recently Viewed
+                </h3>
+                <div class="recent-list" id="recentList">
+                    <p class="no-recent">No history yet</p>
+                </div>
+            </div>
+            
+            <!-- Settings -->
+            <div class="sidebar-footer">
+                <button class="settings-btn" id="darkModeBtn" aria-label="Toggle dark mode">
+                    <i class="wi wi-moon"></i> Dark Mode
+                </button>
+                <button class="settings-btn" id="refreshBtn" aria-label="Refresh weather">
+                    <i class="wi wi-refresh"></i> Refresh
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-info">
+                    <h2 id="locationName" class="location-name">Loading...</h2>
+                    <p id="lastUpdate" class="last-update">Updating...</p>
+                </div>
+                <div class="header-controls">
+                    <button class="icon-btn" id="shareBtn" aria-label="Share weather">
+                        <i class="wi wi-share"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Current Weather Card -->
+            <section class="current-weather-card">
+                <div class="current-weather-main">
+                    <div class="weather-icon-large">
+                        <i id="weatherIcon" class="wi wi-day-sunny"></i>
+                    </div>
+                    <div class="weather-info">
+                        <div class="temperature-section">
+                            <span id="temperature" class="temperature">--°</span>
+                            <span id="weatherDescription" class="description">Loading...</span>
+                        </div>
+                        <div class="feels-like">
+                            Feels like <span id="feelsLike">--°</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="current-weather-details">
+                    <div class="detail-item">
+                        <i class="wi wi-humidity"></i>
+                        <div>
+                            <div class="detail-label">Humidity</div>
+                            <div class="detail-value" id="humidity">--%</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="wi wi-strong-wind"></i>
+                        <div>
+                            <div class="detail-label">Wind Speed</div>
+                            <div class="detail-value" id="windSpeed">-- m/s</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="wi wi-barometer"></i>
+                        <div>
+                            <div class="detail-label">Pressure</div>
+                            <div class="detail-value" id="pressure">-- hPa</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="wi wi-eye"></i>
+                        <div>
+                            <div class="detail-label">Visibility</div>
+                            <div class="detail-value" id="visibility">-- km</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Forecast Section -->
+            <section class="forecast-section">
+                <h3 class="section-title">
+                    <i class="wi wi-day-cloudy"></i> 5-Day Forecast
+                </h3>
+                <div class="forecast-cards" id="forecastCards">
+                    <!-- Forecast cards will be inserted here -->
+                </div>
+            </section>
+            
+            <!-- Detailed Metrics -->
+            <section class="details-section">
+                <h3 class="section-title">
+                    <i class="wi wi-thermometer"></i> Detailed Metrics
+                </h3>
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <div class="detail-card-icon">
+                            <i class="wi wi-thermometer"></i>
+                        </div>
+                        <div class="detail-card-content">
+                            <div class="detail-card-label">Min Temperature</div>
+                            <div class="detail-card-value" id="minTemp">--°</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-card-icon">
+                            <i class="wi wi-thermometer-exterior"></i>
+                        </div>
+                        <div class="detail-card-content">
+                            <div class="detail-card-label">Max Temperature</div>
+                            <div class="detail-card-value" id="maxTemp">--°</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-card-icon">
+                            <i class="wi wi-raindrops"></i>
+                        </div>
+                        <div class="detail-card-content">
+                            <div class="detail-card-label">Precipitation</div>
+                            <div class="detail-card-value" id="precipitation">-- mm</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-card-icon">
+                            <i class="wi wi-cloud"></i>
+                        </div>
+                        <div class="detail-card-content">
+                            <div class="detail-card-label">Cloud Coverage</div>
+                            <div class="detail-card-value" id="cloudCoverage">-- %</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-card-icon">
+                            <i class="wi wi-sunrise"></i>
+                        </div>
+                        <div class="detail-card-content">
+                            <div class="detail-card-label">Sunrise</div>
+                            <div class="detail-card-value" id="sunrise">--:--</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-card-icon">
+                            <i class="wi wi-sunset"></i>
+                        </div>
+                        <div class="detail-card-content">
+                            <div class="detail-card-label">Sunset</div>
+                            <div class="detail-card-value" id="sunset">--:--</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Error Toast -->
+    <div class="error-toast" id="errorToast">
+        <i class="wi wi-alert"></i>
+        <span id="errorMessage"></span>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/weather-api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

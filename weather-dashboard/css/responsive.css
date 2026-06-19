@@ -1,0 +1,228 @@
+/* Tablet (768px and below) */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: 200px;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    .main-content {
+        flex: 1;
+        overflow-y: auto;
+    }
+    
+    .sidebar-header {
+        display: none;
+    }
+    
+    .search-section {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    
+    .favorites-section,
+    .recent-section,
+    .sidebar-footer {
+        display: none;
+    }
+    
+    .search-box {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .current-weather-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .forecast-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: auto;
+        overflow: visible;
+        padding-bottom: 16px;
+    }
+    
+    .main-content {
+        flex: 1;
+        overflow-y: auto;
+    }
+    
+    .sidebar-header {
+        padding: 16px 16px;
+        border-bottom: none;
+    }
+    
+    .logo {
+        font-size: 16px;
+    }
+    
+    .search-section {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .favorites-section,
+    .recent-section,
+    .sidebar-footer {
+        display: none;
+    }
+    
+    .header {
+        padding: 20px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .location-name {
+        font-size: 24px;
+    }
+    
+    .header-controls {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .current-weather-card {
+        margin: 16px;
+        padding: 20px;
+    }
+    
+    .current-weather-main {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 24px;
+    }
+    
+    .weather-icon-large {
+        font-size: 80px;
+        min-width: 80px;
+    }
+    
+    .temperature {
+        font-size: 48px;
+    }
+    
+    .description {
+        font-size: 16px;
+    }
+    
+    .current-weather-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .forecast-section,
+    .details-section {
+        margin: 0 16px 24px;
+    }
+    
+    .forecast-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .forecast-card {
+        padding: 16px;
+    }
+    
+    .forecast-icon {
+        font-size: 40px;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .detail-card {
+        padding: 16px;
+    }
+    
+    .detail-card-value {
+        font-size: 20px;
+    }
+}
+
+/* Small Mobile (360px and below) */
+@media (max-width: 480px) {
+    .search-input,
+    .search-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .location-name {
+        font-size: 20px;
+    }
+    
+    .temperature-section {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .temperature {
+        font-size: 40px;
+    }
+    
+    .description {
+        font-size: 14px;
+    }
+    
+    .current-weather-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .forecast-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .forecast-card {
+        padding: 12px;
+    }
+    
+    .forecast-icon {
+        font-size: 32px;
+    }
+    
+    .error-toast {
+        left: 12px;
+        right: 12px;
+        max-width: none;
+    }
+}
